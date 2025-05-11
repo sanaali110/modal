@@ -4,7 +4,7 @@ import LoginConfirmation from "./LoginConfirmation"
 
 const Login = ({ onCancel, onLogin }) => {
     const modalContext = useContext(ModalContext)
-    throw new Error("Parameter is not a number!");
+    // throw new Error("Parameter is not a number!");
     const onLoginClick = () => {
         
         modalContext.setModalContent(

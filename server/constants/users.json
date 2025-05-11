@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "username": "user1",
+    "location": "UK",
+    "name": "Sana",
+    "password": "123"
+  },
+  {
+    "id": 2,
+    "username": "user2",
+    "location": "Ireland",
+    "name": "Abhi",
+    "password": "1234"
+  },
+  {
+    "id": 3,
+    "username": "user2",
+    "location": "Ireland",
+    "name": "Abhi",
+    "password": "1234"
+  },
+  {
+    "id": 4,
+    "username": "user3",
+    "location": "UK",
+    "name": "Sam",
+    "password": "12345"
+  }
+]
