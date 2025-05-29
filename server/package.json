@@ -1,0 +1,16 @@
+{
+  "name": "localserver",
+  "version": "1.0.0",
+  "description": "This will act as a local server",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run test",
+    "server": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
