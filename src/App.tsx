@@ -9,15 +9,19 @@ import { ErrorBoundary } from "react-error-boundary";
 import MemberSignUp from "./view/MemberSignUp";
 import LoginConfirmation from "./view/LoginConfirmation";
 
-type ModalContextType = {
-setModalContent: Dispatch<SetStateAction<React.ReactNode | undefined>>
+export type CurrentViewType = "login" | "loginConfirmation" | "signup";
+
+interface ModalContextType {
+  setModalContent: Dispatch<SetStateAction<React.ReactNode | undefined>>;
 }
-export const ModalContext = createContext<ModalContextType | undefined>(undefined);
+export const ModalContext = createContext<ModalContextType | undefined>(
+  undefined
+);
 
 function App() {
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>();
-  const [currentView, setCurrentView] = useState<'login' | 'loginConfirmation' | 'signup'>("login");
+  const [currentView, setCurrentView] = useState<CurrentViewType>("login");
 
   const handleClick = () => {
     setShowModal(!showModal);
@@ -28,7 +32,7 @@ function App() {
     setShowModal(true);
   };
 
-  const getModalTitle = ():string => {
+  const getModalTitle = (): string => {
     if (currentView === "login") {
       return "Login";
     } else if (currentView === "loginConfirmation") {
@@ -40,13 +44,9 @@ function App() {
   };
 
   return (
-    <ModalContext.Provider
-      value={{ setModalContent }}
-    >
+    <ModalContext.Provider value={{ setModalContent }}>
       <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
         <div className="App">
-           
-
           {showModal && (
             <Modal title={getModalTitle()}>
               {currentView === "login" ? (
@@ -64,17 +64,21 @@ function App() {
               )}
             </Modal>
           )}
-         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <button type="button" className="button" onClick={handleClick}>
-                  Login to the dashboard
-                </button>
-              </>
-            }
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <button
+                    type="button"
+                    className="button"
+                    onClick={handleClick}
+                  >
+                    Login to the dashboard
+                  </button>
+                </>
+              }
+            />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </div>
