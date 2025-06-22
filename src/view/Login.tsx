@@ -3,20 +3,20 @@ import React from "react";
 import { ModalContext } from "../App";
 import LoginConfirmation from "./LoginConfirmation";
 import MemberSignUp from "./MemberSignUp";
+import math from "math";
 
-interface LoginPropTypes  {
+interface LoginPropTypes {
   onCancel: () => void;
-  onLogin: () =>void;
+  onLogin: () => void;
   onSignup: () => void;
-
 }
 const Login: React.FC<LoginPropTypes> = ({ onCancel, onLogin, onSignup }) => {
   const [username, setUsername] = useState<React.ReactNode>();
   const [password, setPassword] = useState<React.ReactNode>();
   const modalContext = useContext(ModalContext);
   const [error, setError] = useState<string>();
-
-  const onLoginClick = async (e:React.MouseEvent<HTMLButtonElement>) => {
+  console.log("math", math.phi);
+  const onLoginClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       const response = await fetch("http://localhost:8080/login", {
@@ -38,17 +38,16 @@ const Login: React.FC<LoginPropTypes> = ({ onCancel, onLogin, onSignup }) => {
             }}
           />
         );
-         onLogin();
+        onLogin();
       } else {
-        setError(result.error && 'You are not a member' || "Login Failed");
-        
+        setError((result.error && "You are not a member") || "Login Failed");
       }
     } catch (err) {
       setError("Error fetching the info...");
       console.error("Login error:", err);
     }
   };
-  
+
   return (
     <form>
       <input
@@ -69,8 +68,12 @@ const Login: React.FC<LoginPropTypes> = ({ onCancel, onLogin, onSignup }) => {
       <button className="button" onClick={onCancel}>
         Cancel
       </button>
-      <br /><br />
-      Not a member?<button className="link-button" onClick={onSignup}>Sign up </button>
+      <br />
+      <br />
+      Not a member?
+      <button className="link-button" onClick={onSignup}>
+        Sign up
+      </button>
       {error && <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>}
     </form>
   );

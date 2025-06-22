@@ -1,0 +1,34 @@
+{
+  "name": "math",
+  "description": "Math utilities are included in this.",
+  "keywords": [
+    "math"
+  ],
+  "version": "1.0.0",
+  "types": "math.d.ts",
+  "files": [
+    "math.js"
+  ],
+  "main": "math.js",
+  "exports": {
+    ".": {
+      "default": "./math.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "files",
+    "directory": "packages/math"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "loose-envify": "^1.1.0"
+  },
+  "browserify": {
+    "transform": [
+      "loose-envify"
+    ]
+  }
+}
