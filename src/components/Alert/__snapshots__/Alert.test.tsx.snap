@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing alert component render alert 1`] = `
+<div>
+  <div>
+    <p>
+      alert me
+    </p>
+    <p>
+      0
+    </p>
+    <p>
+      Not Submitted
+    </p>
+    <button>
+      OK
+    </button>
+    <button>
+      Cancel
+    </button>
+  </div>
+</div>
+`;
