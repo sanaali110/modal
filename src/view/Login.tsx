@@ -52,12 +52,14 @@ const Login: React.FC<LoginPropTypes> = ({ onCancel, onLogin, onSignup }) => {
     <form>
       <input
         type="email"
+        data-testid="email"
         className="input-styles"
         onChange={(e) => setUsername(e.target.value)}
         placeholder="type your email"
       />
       <input
         type="password"
+        data-testid="password"
         className="input-styles"
         onChange={(e) => setPassword(e.target.value)}
         placeholder="type your password"

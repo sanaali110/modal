@@ -4,6 +4,7 @@ interface AlertProps {
   text: string;
 }
 
+
 const Alert: React.FC<AlertProps> = ({ text }): JSX.Element => {
   const [count, setCount] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
