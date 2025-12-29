@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 const users = require("./constants/users.json");
 const cors = require("cors");
 app.use(cors());
+
 /*
  *  Enables user to login to the server
  **/
@@ -44,7 +45,7 @@ app.get("/user/:id", (req, res) => {
 // /*
 //  * User can signup using this endpoint
 //  **/
-const filePath = path.join(__dirname,"constants","users.json");
+const filePath = path.join(__dirname, "constants", "users.json");
 
 app.post("/signup", (req, res) => {
   fs.readFile(filePath, "utf8", (err, data) => {
@@ -82,6 +83,25 @@ app.get("/", (req, res) => {
 // app.get("/login", (req, res) => {
 //   res.send("Hello from Express!");
 // });
+
+// Improved SPA fallback: only serve index.html for non-API, non-static requests
+const distPath = path.join(__dirname, "..", "build");
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+  app.use((req, res, next) => {
+    // Skip API and static file requests
+    if (req.path.startsWith("/api") || req.path.startsWith("/user") || req.path.startsWith("/login") || req.path.startsWith("/signup") || req.path.startsWith("/static") || req.path.startsWith("/public")) {
+      return next();
+    }
+    const indexFile = path.join(distPath, "index.html");
+    if (fs.existsSync(indexFile)) {
+      res.sendFile(indexFile);
+    } else {
+      next();
+    }
+  });
+}
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
