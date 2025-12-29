@@ -78,7 +78,12 @@ app.post("/signup", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Login route is working");
+  const indexFile = path.join(__dirname, "..", "build", "index.html");
+  if (fs.existsSync(indexFile)) {
+    res.sendFile(indexFile);
+  } else {
+    res.status(404).send("index.html not found");
+  }
 });
 // app.get("/login", (req, res) => {
 //   res.send("Hello from Express!");
